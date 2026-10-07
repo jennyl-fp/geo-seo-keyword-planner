@@ -1,86 +1,73 @@
-# GEO 關鍵字研究工具 MCP（簡易版）
+# GEO Keyword Research Tool — MCP (Lite)
 
-輸入種子關鍵字，輸出一份可直接執行的內容計劃：關鍵字清單（含評分）、主題分組、內容路線、GEO prompt 建議（含 fan-out 分類與 5 原型）、競爭對手差距。
+Input seed keywords, get an execution-ready content plan: ranked keyword list, topic clusters, content roadmap, GEO prompt suggestions (fan-out classification + 5 templates), and competitor keyword gaps.
 
-## 不做清單（產品身分）
+## What this tool does NOT do (product identity)
 
-- ❌ 內容草稿
-- ❌ 排名追蹤
-- ❌ 技術審計
-- ❌ LLM 生成（所有輸出皆規則驅動，無 LLM 呼叫）
+- ❌ Content drafts
+- ❌ Ranking tracking
+- ❌ Technical audits
+- ❌ LLM generation (all outputs are rule-driven; no LLM calls)
 
-## 工具面（4 個 MCP tools + 2 個資料 adapter）
+## Tools (4 data tools + 2 data adapters)
 
 ```
-seeds ──► expand_keywords ──► keyword_metrics ──► （內部分組+評分）
-              ▲ GKP（量測覆蓋）         ▲ GSC（自家排名）
-                                      │
-              keyword_gap（1–3 對手，GSC 排除自家詞）
-                                      ▼
-              build_report（編排：分組 → 評分 → 問句挖掘 → fan-out 分類
-                          → 5 原型 → markdown 報告）
+seeds ──► expand_keywords ──► keyword_metrics ──► （internal clustering + scoring）
+              ▲ GKP (volume coverage)     ▲ GSC (own rankings)
+                                          │
+              keyword_gap (1–3 competitors, GSC excludes own keywords)
+                                          ▼
+              build_report (pipeline: clustering → scoring → question mining
+                          → fan-out classification → 5 templates → markdown report)
 ```
 
-| 工具 | 行為 |
+| Tool | Behavior |
 |---|---|
-| `expand_keywords` | Ahrefs 三路擴展 + 去重；GKP 有接時以 generate_keyword_ideas 補量測 |
-| `keyword_metrics` | 批次 ≤100；volume 取 GKP > Ahrefs 優先序；intent / KD / CPC |
-| `keyword_gap` | 1–3 對手 organic keywords，減去自家已排名詞（Ahrefs + GSC）與對手品牌詞（含 is_branded） |
-| `build_report` | 一鍵編排 → markdown 報告（含 GEO prompt 節） |
-| `plan_blog_topics` | 日常 blog topic research（ADR-014~017）：1 primary + 2–4 secondary 打包（vol>0、intent 符合 page_type、register 書面/口語可選），附 title 建議與 ≤580px 像素檢查 |
+| `expand_keywords` | Ahrefs 3-way expansion + dedupe; GKP `generate_keyword_ideas` supplements volumes when available |
+| `keyword_metrics` | Batches ≤100; volume priority GKP > Ahrefs; intent / KD / CPC |
+| `keyword_gap` | 1–3 competitors' organic keywords, minus own ranked keywords (Ahrefs + GSC) and competitor brand terms (incl. `is_branded`) |
+| `build_report` | One-click pipeline → markdown report (incl. GEO prompt section) |
+| `plan_blog_topics` | Day-to-day blog topic research (ADR-014~017): packages 1 primary + 2–4 secondary keywords (vol>0, intent matching `page_type`, optional written/Cantonese register filter), with title suggestion and ≤580px pixel check |
 
-Adapter（非獨立工具，掛在資料層）：GKP（本地 Keyword Planner MCP server 子進程）、GSC（**優先** First Page agency MCP `FIRSTPAGE_MCP_TOKEN`，後備 Search Console API service account；ADR-010）。兩者皆可選：沒配置 → 跳過並在報告聲明，功能不崩。
+Adapters (not standalone tools; sit in the data layer): GKP (local Keyword Planner MCP server subprocess), GSC (**preferred**: First Page agency MCP `FIRSTPAGE_MCP_TOKEN`; fallback: Search Console API service account; ADR-010). Both optional: when unconfigured the feature is skipped and noted in the report — nothing breaks.
 
-## 驗收標準：報告模板（§6，八節固定）
+## Acceptance standard: report template (§6, fixed 8 sections)
+
+The report output language is Traditional Chinese (spec §6). The template below mirrors the actual rendered output:
 
 ```markdown
-# 內容計劃 — <域名>（<日期>）
+# 內容計劃 — <domain>（<date>）
 
-## 1. 摘要
-→ 詞數、cluster 數、資料來源（Ahrefs/GKP/GSC live 或估算）
-
-## 2. 關鍵字清單
-→ keyword / volume / KD / intent / funnel / score（可貼 Excel）
-
-## 3. 主題分組
-→ 組名、hub 建議、成員、總量
-
-## 4. 內容路線
-→ hub → spokes 順序（量大組先做）
-
-## 5. GEO prompt 建議
-→ 每組：挖到的問句（含 funnel + fanout_type 標籤）
-    + 5 條原型（標 template；branded 的另標）
-    + 指引：答案在 H3 下首句直給（40–50 字 BLUF），
-      再展開成 134–167 字自足段落（AI 引用帶）
-
-## 6. 自家排名機會
-→ GSC 已接時：排名 11–30 的詞（strike-distance 清單）
-
-## 7. 競爭對手差距
-→ top 20：keyword / volume / KD / 哪些對手在排
-
-## 8. 資料聲明
-→ 一行：各來源 live/估算狀態
+## 1. 摘要        → keyword count, cluster count, data sources (Ahrefs/GKP/GSC live or estimated)
+## 2. 關鍵字清單   → keyword / volume / KD / intent / funnel / score (Excel-pasteable)
+## 3. 主題分組     → cluster name, hub suggestion, members, total volume
+## 4. 內容路線     → hub → spokes order (highest-volume clusters first)
+## 5. GEO prompt 建議 → per cluster: mined questions (funnel + fanout_type labels)
+                        + 5 template prompts (tagged; branded flagged)
+                        + guidance: answer in the first sentence under H3 (40–50 char BLUF),
+                          then expand into a 134–167 char self-contained paragraph (AI citation band)
+## 6. 自家排名機會 → (GSC connected only): keywords ranked 11–30 (strike-distance list)
+## 7. 競爭對手差距  → top 20: keyword / volume / KD / which competitors rank
+## 8. 資料聲明      → one line: live/estimated status per source
 ```
 
-## 工程底線（三條不變）
+## Engineering principles (three, non-negotiable)
 
-1. 無 key 無網路，測試全套綠（API 全 mock；GKP 子進程與 GSC 也 mock）
-2. 同輸入兩次運行 byte-level 相同（日期參數注入）
-3. API 欄位上線前真 key 打一次驗證（DECISIONS.md 記錄已驗證坑）
+1. Fully green test suite with no keys and no network (all APIs mocked; GKP subprocess and GSC mocked too)
+2. Same input run twice → byte-identical output (dates injected as parameters)
+3. API fields verified with a real key before going live (verified pitfalls recorded in DECISIONS.md)
 
-## 執行
+## Setup & run
 
 ```bash
-pip install -e ".[dev]"      # 或 uv sync --extra dev
-cp .env.example .env         # 填入 AHREFS_API_TOKEN / FIRSTPAGE_MCP_TOKEN / KEYWORD_PLANNER_MCP_COMMAND（+其 Google Ads env）
-geo-keyword-planner          # stdio MCP server（.env 自動載入，已存在的 env 不覆蓋）
+pip install -e ".[dev]"      # or: uv sync --extra dev
+cp .env.example .env         # fill in AHREFS_API_TOKEN / FIRSTPAGE_MCP_TOKEN / KEYWORD_PLANNER_MCP_COMMAND (+ its Google Ads env vars)
+geo-keyword-planner          # stdio MCP server (auto-loads .env; existing env vars are not overridden)
 ```
 
-測試：`pytest`（無 key 無網路全綠）；lint：`ruff check src tests`。
-GKP 子進程除錯：`GKP_MCP_DEBUG=1` 時 stderr 直通。
+Tests: `pytest` (green offline, no keys); lint: `ruff check src tests`.
+GKP subprocess debugging: `GKP_MCP_DEBUG=1` forwards stderr.
 
-## 完整規格
+## Full specification
 
-見 `../geo-seo-keyword-planner-lite/GEO關鍵字研究工具-簡易版規格.docx`（v2）。本 README 即範圍錨——任何超出「不做清單」的需求須先立 ADR。
+See `../geo-seo-keyword-planner-lite/GEO關鍵字研究工具-簡易版規格.docx` (v2, Chinese). This README is the scope anchor — any requirement beyond the "does NOT do" list requires a new ADR first.
