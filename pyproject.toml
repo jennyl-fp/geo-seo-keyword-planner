@@ -1,0 +1,56 @@
+[project]
+name = "geo-keyword-planner"
+version = "0.1.0"
+description = "GEO 關鍵字研究工具 MCP — 簡易版"
+requires-python = ">=3.11"
+dependencies = ["google-auth>=2.0", "fastmcp>=2.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+geo-keyword-planner = "server:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = [
+    "config",
+    "ahrefs_client",
+    "gsc_client",
+    "gkp_adapter",
+    "firstpage_client",
+    "scoring",
+    "report",
+    "server",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "BLE", "DTZ", "C4", "FURB", "RUF"]
+ignore = [
+    # RUF001/002/003：中文全形標點（：；（）等）在 CJK 文本屬正常用法，非歧義字符
+    "RUF001", "RUF002", "RUF003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# BLE001（blind except）= ADR-004「永不 raise」降級架構的刻意實作；
+# DTZ011（date.today()）= ADR-009 日期注入的預設值。
+"src/ahrefs_client.py" = ["BLE001", "DTZ011"]
+"src/gsc_client.py" = ["BLE001", "DTZ011"]
+"src/gkp_adapter.py" = ["BLE001", "DTZ011"]
+"src/firstpage_client.py" = ["BLE001", "DTZ011"]
+"src/report.py" = ["DTZ011"]

@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: geo-keyword-planner
+Version: 0.1.0
+Summary: GEO 關鍵字研究工具 MCP — 簡易版
+Requires-Python: >=3.11
+Requires-Dist: google-auth>=2.0
+Requires-Dist: fastmcp>=2.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Requires-Dist: ruff>=0.6; extra == "dev"

@@ -1,0 +1,38 @@
+{
+  "keywords": [
+    {
+      "keyword": "smart office",
+      "volume": 1200,
+      "difficulty": 35,
+      "cpc": 250,
+      "intents": {
+        "informational": true,
+        "commercial": true,
+        "transactional": false,
+        "navigational": false
+      },
+      "parent_topic": "smart office"
+    },
+    {
+      "keyword": "smart office hong kong",
+      "volume": 390,
+      "difficulty": 22,
+      "cpc": null,
+      "intents": null,
+      "parent_topic": "smart office"
+    },
+    {
+      "keyword": "智能辦公室",
+      "volume": 800,
+      "difficulty": 18,
+      "cpc": 90,
+      "intents": {
+        "informational": true,
+        "commercial": false,
+        "transactional": false,
+        "navigational": false
+      },
+      "parent_topic": "智能辦公室"
+    }
+  ]
+}
