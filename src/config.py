@@ -1,6 +1,6 @@
 """環境配置讀取（T1.2）。
 
-來源：GEO關鍵字研究工具-簡易版規格 v2 §2 Adapter 表 —
+來源：GEO關鍵字研究工具規格書（v2）§2 Adapter 表 —
   Ahrefs: AHREFS_API_TOKEN（ADR-002 唯一付費源）
   GSC:    GOOGLE_APPLICATION_CREDENTIALS + GSC_SITE_URL（ADR-007）
           或 FIRSTPAGE_MCP_TOKEN 經 agency MCP（ADR-010，優先）

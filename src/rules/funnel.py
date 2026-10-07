@@ -1,6 +1,6 @@
 """Funnel 三分類（T1.7；規格 §4.2）。
 
-來源：GEO關鍵字研究工具-簡易版規格 v2 §4.2；BOFU/MOFU/TOFU 訊號依據
+來源：GEO關鍵字研究工具規格書（v2）§4.2；BOFU/MOFU/TOFU 訊號依據
 https://searchengineland.com/guide/bofu-keywords 、
 https://searchengineland.com/guide/mofu-keywords 、
 https://searchengineland.com/guide/tofu-keywords（規格 §9 基礎組）。

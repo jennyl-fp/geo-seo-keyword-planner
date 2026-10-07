@@ -1,6 +1,6 @@
 """主題分組（T1.9；規格 §4.5 簡版）。
 
-來源：GEO關鍵字研究工具-簡易版規格 v2 §4.5；hub→spokes 內容路線欄位
+來源：GEO關鍵字研究工具規格書（v2）§4.5；hub→spokes 內容路線欄位
 依據 https://www.semrush.com/blog/keyword-mapping/（規格 §9 基礎組）。
 
 分組規則：

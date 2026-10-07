@@ -82,7 +82,7 @@ def prepare_keywords(keywords: list[str]) -> list[str]:
 def www_target(domain: str) -> str:
     """apex 域名（單一 dot、無 scheme）→ www 變體；其餘原樣（規格 §3）。
 
-    已知限制：雙節 TLD（example.co.hk）不會被視為 apex，簡易版接受。
+    已知限制：雙節 TLD（example.co.hk）不會被視為 apex，本版接受。
     """
     target = domain.strip().lower()
     for scheme in ("https://", "http://"):

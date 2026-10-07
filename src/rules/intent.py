@@ -1,6 +1,6 @@
 """Intent 四分類（T1.6；規格 §4.1 簡版詞表）。
 
-來源：GEO關鍵字研究工具-簡易版規格 v2 §4.1；
+來源：GEO關鍵字研究工具規格書（v2）§4.1；
 詞表總表依據 https://searchengineland.com/guide/search-intent-seo（規格 §9 基礎組）。
 
 比對規則：

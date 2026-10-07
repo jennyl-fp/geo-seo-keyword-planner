@@ -93,7 +93,7 @@ class GscClient:
         """近 window_days 天（end 含當日）各 query 的平均 position。
 
         domain 參數為 firstpage 介面對齊而設，本 client site 由 env 固定，忽略。
-        已知限制：單次請求 rowLimit 25000，不分頁（低用量，簡易版接受）。
+        已知限制：單次請求 rowLimit 25000，不分頁（低用量，本版接受）。
         """
         end = date.fromisoformat(self._end)
         start = (end - timedelta(days=window_days - 1)).isoformat()

@@ -5,7 +5,7 @@
 | # | 決策 | 理由 | 日期 |
 |---|------|------|------|
 | ADR-001 | 語言框架：Python 3.11+ / uv / FastMCP（stdio transport） | 規格 repo 結構為 Python；MCP 官方 SDK 成熟；團隊 Junior SEO 可維護 | 2026-09-30 |
-| ADR-002 | Ahrefs 為唯一付費資料源（REST API v3，`AHREFS_API_TOKEN`） | 簡易版不做多付費源；GKP/GSC 免費補量測與自家 grounding | 2026-09-30 |
+| ADR-002 | Ahrefs 為唯一付費資料源（REST API v3，`AHREFS_API_TOKEN`） | 本版不做多付費源；GKP/GSC 免費補量測與自家 grounding | 2026-09-30 |
 | ADR-003 | 無 LLM：所有輸出（分組、fan-out、原型 prompt）皆規則驅動 | 可測、確定性、離線可跑；升級路徑才考慮 LLM | 2026-09-30 |
 | ADR-004 | Offline-first：缺 key / 斷網永不 raise，client 回 None，輸出標「估算」 | 測試全套綠 + 降級路徑本身有測試 | 2026-09-30 |
 | ADR-005 | 輸出 = 單一 markdown 報告檔（reports/，gitignore） | 產品身分：一鍵內容計劃，不是資料管道 | 2026-09-30 |
@@ -13,7 +13,7 @@
 | ADR-007 | GSC adapter = service account（`GOOGLE_APPLICATION_CREDENTIALS` + `GSC_SITE_URL`），end date 一律 today−3 | GSC finalization lag，否則尾部天數是 0 假值 | 2026-09-30 |
 | ADR-008 | 量測優先序 GKP > Ahrefs > 無資料（標估算）；無 volume 的問句照列（標「無量測數據」） | 信譽原則：猜測永不偽裝成實測；無量 ≠ 無需求 | 2026-09-30 |
 | ADR-009 | 確定性：日期以參數注入；排序 tie-break = keyword 字典序 | 同輸入兩次運行 byte-level 相同 | 2026-09-30 |
-| ADR-010 | GSC 優先經 First Page agency MCP（remote，`FIRSTPAGE_MCP_TOKEN` + `FIRSTPAGE_MCP_URL`），無 token 才退 service account（ADR-007 路徑保留） | agency 已有 838 個 GSC properties 的 MCP 存取；免去逐客戶 service account；GA4 工具同 server 亦有（升級路徑，簡易版未用） | 2026-10-06 |
+| ADR-010 | GSC 優先經 First Page agency MCP（remote，`FIRSTPAGE_MCP_TOKEN` + `FIRSTPAGE_MCP_URL`），無 token 才退 service account（ADR-007 路徑保留） | agency 已有 838 個 GSC properties 的 MCP 存取；免去逐客戶 service account；GA4 工具同 server 亦有（升級路徑，本版未用） | 2026-10-06 |
 | ADR-011 | §7 gap 排除 Ahrefs organic `is_branded=true` 的列（另保留品牌 pattern 過濾作雙保險） | dogfood 發現對手品牌別名（tut/mc music/人名）漏網；is_branded 是 Ahrefs 自帶欄位，資料驅動免維護別名表；品牌流量難搶，排除不損失機會 | 2026-10-06 |
 | ADR-012 | 分組簽章加策展泛詞停用表（老師/歌曲/歌詞/課程/教學/推薦/收費/價錢/好唔好/dcard/lihkg/ptt/chord/hong/kong/best），泛詞不作合併依據。**不**採 DF 門檻：單一主題池中正主題詞出現率天然超標，DF 會誤殺主分組（dogfood 實證） | dogfood：結他 hub 吸 373 spokes 的根因是泛詞簽章鏈式合併；停用表與 §4.1 詞表哲學一致，來源=2026-10-06 dogfood 觀察 | 2026-10-06 |
 | ADR-013 | 原型產生設總量下限：cluster 總量 <50 的組在 §3/§4 照列，§5 標「低優先，略過原型」 | dogfood 雜訊小組各產 5 原型屬雜訊放大；閾值 50 為單一數據點啟發式，註明待調；高量離題雜訊（冰結 720）仍需完全版相關性過濾——本 ADR 不處理 | 2026-10-06 |

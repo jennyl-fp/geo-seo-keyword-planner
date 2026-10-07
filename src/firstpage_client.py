@@ -12,7 +12,7 @@ top_queries() 契約與 gsc_client.GscClient 相同：正規化鍵、同鍵取�
 site 解析順序：GSC_SITE_URL env → 依報表 domain 從 gsc_list_sites
 匹配（host 全等優先，其次子字串，external_id 排序後首見——確定性）。
 缺 token / 錯誤 → None、永不 raise、不重試（ADR-004）。
-GA4 工具（ga4_list_properties 等）本 server 亦有，簡易版規格未用到，
+GA4 工具（ga4_list_properties 等）本 server 亦有，本版規格未用到，
 列為升級路徑（DECISIONS.md ADR-010）。
 """
 

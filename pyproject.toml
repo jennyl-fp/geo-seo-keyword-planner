@@ -1,7 +1,7 @@
 [project]
 name = "geo-keyword-planner"
 version = "0.1.0"
-description = "GEO 關鍵字研究工具 MCP — 簡易版"
+description = "GEO 關鍵字研究工具 MCP"
 requires-python = ">=3.11"
 dependencies = ["google-auth>=2.0", "fastmcp>=2.0"]
 

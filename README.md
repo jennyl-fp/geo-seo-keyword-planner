@@ -70,4 +70,4 @@ GKP subprocess debugging: `GKP_MCP_DEBUG=1` forwards stderr.
 
 ## Full specification
 
-See `../geo-seo-keyword-planner-lite/GEO關鍵字研究工具-簡易版規格.docx` (v2, Chinese). This README is the scope anchor — any requirement beyond the "does NOT do" list requires a new ADR first.
+See the Chinese spec document (v2) in `../geo-seo-keyword-planner-lite/`. This README is the scope anchor — any requirement beyond the "does NOT do" list requires a new ADR first.
