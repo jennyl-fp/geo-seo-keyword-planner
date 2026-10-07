@@ -1,9 +1,0 @@
-ahrefs_client
-config
-firstpage_client
-gkp_adapter
-gsc_client
-report
-rules
-scoring
-server
