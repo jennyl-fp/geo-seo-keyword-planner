@@ -1,13 +1,8 @@
 # GEO Keyword Research Tool — MCP
 
-Input seed keywords, get an execution-ready content plan: ranked keyword list, topic clusters, content roadmap, GEO prompt suggestions (fan-out classification + 5 templates), and competitor keyword gaps.
+A keyword-research pipeline composed of multiple studies: keyword expansion study (Ahrefs 3-path + GKP ideas), market-volume study (GKP > Ahrefs volume priority), own-ranking study (GSC grounding), competitive-gap study (1–3 competitors, brand/is_branded filtered), topic clustering study, and blog-topic packaging study (1 primary + 2–4 secondaries with intent, register, and ≤580px title checks).
 
-## What this tool does NOT do (product identity)
-
-- ❌ Content drafts
-- ❌ Ranking tracking
-- ❌ Technical audits
-- ❌ LLM generation (all outputs are rule-driven; no LLM calls)
+Feed in seed keywords — get back an execution-ready content plan: ranked keyword list, topic clusters with hub→spokes roadmap, GEO prompt suggestions (fan-out classification + 5 templates per cluster), competitor keyword gaps, and ready-to-publish blog topic packs.
 
 ## Tools (4 data tools + 2 data adapters)
 
