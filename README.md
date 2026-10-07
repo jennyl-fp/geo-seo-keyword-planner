@@ -1,4 +1,4 @@
-# GEO Keyword Research Tool — MCP (Lite)
+# GEO Keyword Research Tool — MCP
 
 Input seed keywords, get an execution-ready content plan: ranked keyword list, topic clusters, content roadmap, GEO prompt suggestions (fan-out classification + 5 templates), and competitor keyword gaps.
 
