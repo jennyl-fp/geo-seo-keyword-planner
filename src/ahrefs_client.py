@@ -29,6 +29,19 @@ Transport = Callable[[str, dict[str, str]], dict]
 _BATCH_SIZE = 100
 _TIMEOUT_SECONDS = 60
 
+# Brand Radar 多平台資料源（2026-10 實測）：cited-domains / ai-responses 免 report_id
+# 可 ad-hoc 查詢；claude 只支援 custom prompts（400 "models do not support Ahrefs
+# dataset"）→ 一律排除（prepare_platforms 回傳 excluded 清單供上層聲明）。
+BRAND_RADAR_PLATFORMS = (
+    "chatgpt",
+    "google_ai_overviews",
+    "google_ai_mode",
+    "gemini",
+    "perplexity",
+    "copilot",
+    "grok",
+)
+
 
 @dataclass(frozen=True)
 class KeywordMetric:
@@ -55,6 +68,31 @@ class OrganicKeyword:
     is_branded: bool = False
 
 
+@dataclass(frozen=True)
+class CitedDomain:
+    domain: str
+    pages: int | None
+    responses: int | None
+
+
+@dataclass(frozen=True)
+class AiResponse:
+    data_source: str | None
+    country: str | None
+    question: str | None
+    volume: int | None
+    links: tuple[tuple[str, str | None], ...]
+
+
+@dataclass(frozen=True)
+class BrandRadarCitations:
+    """多平台引用快照；單一平台失敗 → 記 errors 續走其餘（ADR-004 變體：
+    平台級降級而非整體回 None，供上層如實聲明覆蓋率）。"""
+
+    citations_by_platform: dict[str, tuple[CitedDomain, ...]]
+    errors: dict[str, str]
+
+
 def _default_transport(token: str) -> Transport:
     def transport(path: str, form: dict[str, str]) -> dict:
         query = urllib.parse.urlencode(form)
@@ -77,6 +115,29 @@ def prepare_keywords(keywords: list[str]) -> list[str]:
     """過濾含逗號與空字串、去重（保序）——含逗號會拆壞逗號批次（規格 §3）。"""
     cleaned = (kw.strip() for kw in keywords)
     return list(dict.fromkeys(kw for kw in cleaned if kw and "," not in kw))
+
+
+def prepare_platforms(
+    platforms: list[str] | None,
+) -> tuple[tuple[str, ...], tuple[str, ...]]:
+    """平台清單正規化（小寫、去空、去重保序）；None → 預設全集。
+    回傳 (kept, excluded)：claude 一律排入 excluded（Ahrefs dataset 不支援，
+    規格 §Brand Radar 實測 400），上層据此在輸出聲明。"""
+    source = list(BRAND_RADAR_PLATFORMS) if platforms is None else [
+        p.strip().lower() for p in platforms
+    ]
+    kept: list[str] = []
+    excluded: list[str] = []
+    for platform in source:
+        if not platform:
+            continue
+        if platform == "claude":
+            if "claude" not in excluded:
+                excluded.append("claude")
+            continue
+        if platform not in kept:
+            kept.append(platform)
+    return tuple(kept), tuple(excluded)
 
 
 def www_target(domain: str) -> str:
@@ -109,16 +170,24 @@ class AhrefsClient:
     def yesterday(self) -> str:
         return self._yesterday
 
-    def _call(self, path: str, form: dict[str, str]) -> dict | None:
+    def _call(self, path: str, form: dict[str, str], expected_key: str = "keywords") -> dict | None:
+        payload, _ = self._try_call(path, form, expected_key)
+        return payload
+
+    def _try_call(
+        self, path: str, form: dict[str, str], expected_key: str = "keywords"
+    ) -> tuple[dict | None, str | None]:
+        """單次調用；回 (payload, error)。缺 key → (None, 'no token')；
+        傳輸/解析錯 → (None, 訊息)。永不 raise、不重試（ADR-004）。"""
         if not self._token:
-            return None
+            return None, "no token"
         try:
             payload = self._transport(path, form)
-        except Exception:
-            return None
-        if not isinstance(payload, dict) or not isinstance(payload.get("keywords"), list):
-            return None
-        return payload
+        except Exception as exc:  # ADR-004：刻意 blind except，降級不重試
+            return None, str(exc) or type(exc).__name__
+        if not isinstance(payload, dict) or not isinstance(payload.get(expected_key), list):
+            return None, f"malformed payload (missing '{expected_key}')"
+        return payload, None
 
     def keyword_overview(
         self, keywords: list[str], country: str = "hk"
@@ -248,4 +317,97 @@ class AhrefsClient:
             )
             for row in payload["keywords"]
             if row.get("keyword")
+        ]
+
+    def brand_radar_cited_domains(
+        self,
+        brand: str,
+        competitors: list[str],
+        country: str = "hk",
+        platforms: list[str] | None = None,
+        limit: int = 1000,
+    ) -> BrandRadarCitations | None:
+        """Brand Radar：brand+competitors 競技組在每個 AI 平台被引用的域名。
+        免 report_id（ad-hoc）；date=昨天（快照較完整）。
+        單一平台失敗 → errors 記錄、其餘續走（平台級降級）。"""
+        if not self._token or not brand.strip():
+            return None
+        kept, _ = prepare_platforms(platforms)
+        if not kept:
+            return None
+        competitor_names = [c.strip() for c in competitors if c.strip()]
+        citations: dict[str, tuple[CitedDomain, ...]] = {}
+        errors: dict[str, str] = {}
+        for platform in kept:
+            payload, error = self._try_call(
+                "brand-radar/cited-domains",
+                {
+                    "select": "domain,pages,responses",
+                    "brand": brand,
+                    "competitors": ",".join(competitor_names),
+                    "data_source": platform,
+                    "country": country,
+                    "date": self._yesterday,
+                    "limit": str(limit),
+                },
+                expected_key="domains",
+            )
+            if payload is None:
+                errors[platform] = error or "unknown"
+                continue
+            citations[platform] = tuple(
+                CitedDomain(
+                    domain=row.get("domain", ""),
+                    pages=row.get("pages"),
+                    responses=row.get("responses"),
+                )
+                for row in payload["domains"]
+                if row.get("domain")
+            )
+        return BrandRadarCitations(citations_by_platform=citations, errors=errors)
+
+    def brand_radar_ai_responses(
+        self,
+        brand: str,
+        competitors: list[str],
+        country: str = "hk",
+        platforms: list[str] | None = None,
+        limit: int = 50,
+    ) -> list[AiResponse] | None:
+        """Brand Radar：真實 AI prompts（問題、平台、估算量、引用連結）。
+        order_by=volume（此端點不接受 :desc 後綴，規格 §Brand Radar 實測 400）；
+        claude 已排除（否則整批 400）。整體失敗 → None。"""
+        kept, _ = prepare_platforms(platforms)
+        if not self._token or not kept or not brand.strip():
+            return None
+        competitor_names = [c.strip() for c in competitors if c.strip()]
+        payload = self._call(
+            "brand-radar/ai-responses",
+            {
+                "select": "country,data_source,question,volume,links",
+                "brand": brand,
+                "competitors": ",".join(competitor_names),
+                "data_source": ",".join(kept),
+                "country": country,
+                "order_by": "volume",
+                "limit": str(limit),
+            },
+            expected_key="ai_responses",
+        )
+        if payload is None:
+            return None
+        return [
+            AiResponse(
+                data_source=row.get("data_source"),
+                country=row.get("country"),
+                question=row.get("question"),
+                volume=row.get("volume"),
+                links=tuple(
+                    (link.get("url", ""), link.get("title"))
+                    for link in row.get("links", [])
+                    if isinstance(link, dict)
+                ),
+            )
+            for row in payload["ai_responses"]
+            if row.get("question")
         ]

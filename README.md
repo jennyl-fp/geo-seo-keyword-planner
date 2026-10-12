@@ -4,7 +4,7 @@ A keyword-research pipeline composed of multiple studies: keyword expansion stud
 
 Feed in seed keywords — get back an execution-ready content plan: ranked keyword list, topic clusters with hub→spokes roadmap, GEO prompt suggestions (fan-out classification + 5 templates per cluster), competitor keyword gaps, and ready-to-publish blog topic packs.
 
-## Tools (4 data tools + 2 data adapters)
+## Tools (6 data tools + 2 data adapters)
 
 ```
 seeds ──► expand_keywords ──► keyword_metrics ──► （internal clustering + scoring）
@@ -14,6 +14,9 @@ seeds ──► expand_keywords ──► keyword_metrics ──► （internal 
                                           ▼
               build_report (pipeline: clustering → scoring → question mining
                           → fan-out classification → 5 templates → markdown report)
+
+brand_radar_audit ──► multi-AI-platform citation matrix (ChatGPT / Gemini /
+brand_radar_ai_responses    Perplexity / Copilot / Grok / Google AIO & AI Mode)
 ```
 
 | Tool | Behavior |
@@ -23,6 +26,10 @@ seeds ──► expand_keywords ──► keyword_metrics ──► （internal 
 | `keyword_gap` | 1–3 competitors' organic keywords, minus own ranked keywords (Ahrefs + GSC) and competitor brand terms (incl. `is_branded`) |
 | `build_report` | One-click pipeline → markdown report (incl. GEO prompt section) |
 | `plan_blog_topics` | Day-to-day blog topic research (ADR-014~017): packages 1 primary + 2–4 secondary keywords (vol>0, intent matching `page_type`, optional written/Cantonese register filter), with title suggestion and ≤580px pixel check |
+| `brand_radar_audit` | Client + competitors' citation matrix across AI platforms beyond AIO (Brand Radar direct API, ad-hoc — no report_id needed; `claude` auto-excluded: Ahrefs dataset unsupported); per-platform failures degrade to `errors`, never abort |
+| `brand_radar_ai_responses` | Real user prompts captured on AI platforms (question + platform + est. volume + citation links), ordered by volume — for GEO prompt cross-validation; may contain fuzzy-match noise for zero-visibility brands |
+
+Brand Radar tools require `AHREFS_API_TOKEN` (or `AHREFS_API_KEY`) with Enterprise direct-API access; unconfigured → tool returns `sources: false` with a note, nothing breaks (ADR-004).
 
 Adapters (not standalone tools; sit in the data layer): GKP (local Keyword Planner MCP server subprocess), GSC (**preferred**: First Page agency MCP `FIRSTPAGE_MCP_TOKEN`; fallback: Search Console API service account; ADR-010). Both optional: when unconfigured the feature is skipped and noted in the report — nothing breaks.
 

@@ -18,6 +18,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 AHREFS_TOKEN_ENV = "AHREFS_API_TOKEN"
+AHREFS_TOKEN_FALLBACK_ENV = "AHREFS_API_KEY"  # Brand Radar 腳本/skill 用的變數名，二選一即可
 GSC_CREDENTIALS_ENV = "GOOGLE_APPLICATION_CREDENTIALS"
 GSC_SITE_ENV = "GSC_SITE_URL"
 GKP_COMMAND_ENV = "KEYWORD_PLANNER_MCP_COMMAND"
@@ -85,7 +86,8 @@ def load_config(env: Mapping[str, str] | None = None) -> Config:
     """由 env mapping（預設 os.environ）建構 Config；缺項永不 raise。"""
     source = os.environ if env is None else env
     return Config(
-        ahrefs_api_token=_clean(source.get(AHREFS_TOKEN_ENV)),
+        ahrefs_api_token=_clean(source.get(AHREFS_TOKEN_ENV))
+        or _clean(source.get(AHREFS_TOKEN_FALLBACK_ENV)),
         gsc_credentials_path=_clean(source.get(GSC_CREDENTIALS_ENV)),
         gsc_site_url=_clean(source.get(GSC_SITE_ENV)),
         gkp_mcp_command=_clean(source.get(GKP_COMMAND_ENV)),

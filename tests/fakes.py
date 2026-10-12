@@ -29,11 +29,13 @@ def load_fixture_text(name: str) -> str:
 
 class FakeAhrefsTransport:
     """payloads: path → 回應；targets: form.target → 回應（優先，organic 用）；
+    datasources: form.data_source → 回應（優先，brand-radar 逐平台用）；
     error: 所有呼叫拋出。calls 記錄 (path, form)。"""
 
-    def __init__(self, payloads=None, targets=None, error=None):
+    def __init__(self, payloads=None, targets=None, datasources=None, error=None):
         self._payloads = payloads or {}
         self._targets = targets or {}
+        self._datasources = datasources or {}
         self._error = error
         self.calls = []
 
@@ -44,13 +46,16 @@ class FakeAhrefsTransport:
         target = form.get("target")
         if target in self._targets:
             return self._targets[target]
+        data_source = form.get("data_source")
+        if data_source in self._datasources:
+            return self._datasources[data_source]
         return self._payloads.get(path, {"keywords": []})
 
 
-def ahrefs_client(payloads=None, targets=None, error=None, today=TODAY, with_key=True):
+def ahrefs_client(payloads=None, targets=None, error=None, today=TODAY, with_key=True, datasources=None):
     return AhrefsClient(
         WITH_KEY if with_key else NO_KEY,
-        transport=FakeAhrefsTransport(payloads, targets, error),
+        transport=FakeAhrefsTransport(payloads, targets, datasources, error),
         today=today,
     )
 

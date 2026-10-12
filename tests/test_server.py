@@ -187,6 +187,8 @@ _EXPECTED_TOOLS = {
     "keyword_gap",
     "build_report",
     "plan_blog_topics",
+    "brand_radar_audit",
+    "brand_radar_ai_responses",
 }
 
 

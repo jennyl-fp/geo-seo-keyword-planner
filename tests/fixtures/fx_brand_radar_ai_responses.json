@@ -1,0 +1,21 @@
+{
+  "ai_responses": [
+    {
+      "country": "hk",
+      "data_source": "chatgpt",
+      "question": "香港邊間婚禮佈置公司好？",
+      "volume": 120,
+      "links": [
+        { "url": "https://www.misssuki.com/products/wedding", "title": "婚禮場地佈置" },
+        { "url": "https://example.hk/guide", "title": null }
+      ]
+    },
+    {
+      "country": "hk",
+      "data_source": "perplexity",
+      "question": "how much does wedding decoration cost in hong kong?",
+      "volume": 80,
+      "links": []
+    }
+  ]
+}
