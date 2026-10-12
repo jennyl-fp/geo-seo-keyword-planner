@@ -1,0 +1,377 @@
+{
+  "audit_date": "2026-10-08",
+  "country": "hk",
+  "results": [
+    {
+      "keyword": "活動策劃",
+      "ai_overview_present": true,
+      "aio_citations": [
+        "https://www.luna.hk/zh/event-solution",
+        "https://www.chillchi.com.hk/%E6%B4%BB%E5%8B%95%E7%AD%96%E5%8A%83/",
+        "https://hk.indeed.com/%E8%81%B7%E6%B8%AF%E8%B2%BC%E5%A3%AB/%E6%B1%82%E8%81%B7/%E6%B4%BB%E5%8B%95%E7%B5%B1%E7%B1%8Cevent-coordinator%E5%81%9A%E5%92%A9",
+        "https://eventx.io/zh-hk/blog/event-planning-tips",
+        "https://www.tiptop.com.hk/event-management"
+      ],
+      "organic_top10": [
+        "https://hk.jobsdb.com/zh/%E6%B4%BB%E5%8B%95%E7%AD%96%E5%8A%83-jobs",
+        "https://www.luna.hk/zh/event-solution",
+        "https://www.reliable.hk/hk/event_management?tag=event+management",
+        "https://www.chillchi.com.hk/%E6%B4%BB%E5%8B%95%E7%AD%96%E5%8A%83/",
+        "https://hk.indeed.com/%E8%81%B7%E6%B8%AF%E8%B2%BC%E5%A3%AB/%E6%B1%82%E8%81%B7/%E6%B4%BB%E5%8B%95%E7%B5%B1%E7%B1%8Cevent-coordinator%E5%81%9A%E5%92%A9",
+        "https://hk.jooble.org/%E6%8B%9B%E8%81%98-%E6%B4%BB%E5%8B%95%E7%AD%96%E5%8A%83",
+        "https://www.tiptop.com.hk/event-management"
+      ],
+      "local_pack": [
+        "https://www.instagram.com/magia_entertraining/?igshid=YmMyMTA2M2Y="
+      ],
+      "questions": [
+        "活動策劃人是做什麼的?",
+        "香港有哪些活動策劃公司?",
+        "活動策劃工作的主要內容是什麼?",
+        "活動策劃工作用英文怎麼說?"
+      ],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "輕婚禮",
+      "ai_overview_present": true,
+      "aio_citations": [
+        "https://wevow.esdlife.com/article/content/%E8%AD%89%E5%A9%9A%E5%A0%B4%E5%9C%B0%E6%8E%A8%E4%BB%8B-%E9%85%92%E6%A8%93-%E9%A4%90%E5%BB%B3-%E7%89%B9%E8%89%B2%E5%A0%B4%E5%9C%B0",
+        "https://www.venuehub.hk/zh/blog/living-in-hong-kong/e8-bc-95hun-e7-a6-aeshishen-e9-ba-bcyisi-ef-bc-9fxianggang-e8-bc-95hun-e7-a6-ae-e5-a0-b4de-e3-80-81-e9-a0-90suanjiliuchengjie-e7-b4-b9",
+        "https://wedding.esdlife.com/articles/restaurant/2020%E5%B9%B4%E7%89%B9%E8%89%B2%E5%A9%9A%E5%AE%B4%E9%A4%90%E5%BB%B3%E6%8E%A8%E4%BB%8B/",
+        "https://www.myseasons.com.hk/post/simple-wedding-guide-hk-myseasons",
+        "https://lavishflorist.com/blogs/news/hong-kong-light-wedding-venues-recommendation-2026"
+      ],
+      "organic_top10": [
+        "https://wevow.esdlife.com/article/content/%E8%AD%89%E5%A9%9A%E5%A0%B4%E5%9C%B0%E6%8E%A8%E4%BB%8B-%E9%85%92%E6%A8%93-%E9%A4%90%E5%BB%B3-%E7%89%B9%E8%89%B2%E5%A0%B4%E5%9C%B0",
+        "https://www.venuehub.hk/zh/blog/living-in-hong-kong/e8-bc-95hun-e7-a6-aeshishen-e9-ba-bcyisi-ef-bc-9fxianggang-e8-bc-95hun-e7-a6-ae-e5-a0-b4de-e3-80-81-e9-a0-90suanjiliuchengjie-e7-b4-b9",
+        "https://plantoo.com.hk/listing-feature/small-venue/",
+        "https://www.myseasons.com.hk/post/simple-wedding-guide-hk-myseasons",
+        "https://event.runhotel.hk/small-wedding-venue/",
+        "https://lavishflorist.com/blogs/news/hong-kong-light-wedding-venues-recommendation-2026",
+        "https://www.heychoices.com/blogs/%E5%9B%8D%E6%84%9B%E5%88%86%E4%BA%AB/%E7%B1%8C%E5%82%99%E8%BC%95%E5%A9%9A%E7%A6%AE%E5%BF%85%E7%9D%87-%E4%B8%80%E6%96%87%E7%9D%87%E5%93%825%E5%80%8B%E9%AB%98%E6%B0%B4%E6%BA%96%E8%BC%95%E5%A9%9A%E7%A6%AE%E5%A0%B4%E5%9C%B0",
+        "https://sawedding.com.hk/%E5%82%99%E5%A9%9A%E6%94%BB%E7%95%A5%EF%BC%9A%E5%A6%82%E4%BD%95%E9%81%B8%E6%93%87%E8%BC%95%E5%A9%9A%E7%A6%AE%E5%A0%B4%E5%9C%B0%EF%BC%9F%E7%95%99%E6%84%8F8%E5%A4%A7%E4%BA%8B%E9%A0%85%EF%BC%81/",
+        "https://www.maxtangphotography.com/post/%E8%BC%95%E5%A9%9A%E7%A6%AE-%E5%B0%8F%E5%9E%8B%E5%A9%9A%E7%A6%AE-%E8%AD%89%E5%A9%9A-%E6%B5%81%E7%A8%8B%E9%A0%90%E7%AE%97%E5%A0%B4%E5%9C%B0"
+      ],
+      "local_pack": [],
+      "questions": [],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "求婚佈置",
+      "ai_overview_present": true,
+      "aio_citations": [
+        "https://www.gppartyhk.com/categories/%F0%9F%91%89%E6%B1%82%E5%A9%9A%E5%A5%97%E8%A3%9D"
+      ],
+      "organic_top10": [
+        "https://balloonhk.com/collections/proposal-arrangement",
+        "https://www.gppartyhk.com/categories/%F0%9F%91%89%E6%B1%82%E5%A9%9A%E5%A5%97%E8%A3%9D",
+        "https://www.instagram.com/hk.psballoon/",
+        "https://www.cherishinlove.com/proposal-package",
+        "https://www.turtleballoonhk.com/",
+        "https://www.20balloon.com/marriage-proposal-balloon-hk-decoration",
+        "https://www.cherishinlove.com/proposal-balloon-decor"
+      ],
+      "local_pack": [],
+      "questions": [
+        "求婚佈置要花多少錢?",
+        "求婚佈置有哪些建議?",
+        "香港有哪些適合低調求婚的地點?",
+        "酒店求婚時,應該如何佈置?"
+      ],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "證婚儀式",
+      "ai_overview_present": true,
+      "aio_citations": [
+        "https://wevow.esdlife.com/article/content/%E8%AD%89%E5%A9%9A%E5%84%80%E5%BC%8F%E6%B5%81%E7%A8%8B"
+      ],
+      "organic_top10": [
+        "https://wevow.esdlife.com/article/content/%E8%AD%89%E5%A9%9A%E5%84%80%E5%BC%8F%E6%B5%81%E7%A8%8B",
+        "https://www.weddingday.com.tw/post/blog/article/2613",
+        "https://plantoo.com.hk/by_ceremony/",
+        "https://www.clubone.com.hk/articles/wedding_reg_process.html",
+        "https://www.facebook.com/iweddingclub/posts/-%E5%84%80%E5%BC%8F%E6%84%9F%E6%BB%BF%E5%88%86%E8%A5%BF%E5%BC%8F%E8%AD%89%E5%A9%9A%E5%84%80%E5%BC%8F%E5%85%A8%E6%94%BB%E7%95%A5%E6%B5%81%E7%A8%8B%E5%A0%B4%E5%9C%B0%E6%BA%96%E5%82%99%E4%B8%80%E6%AC%A1%E7%9C%8B%E5%A9%9A%E7%A6%AE%E6%BA%96%E5%82%99%E6%8C%87%E5%8D%97%E9%9B%96%E7%84%B6%E8%AD%89%E5%A9%9A%E5%84%80%E5%BC%8F%E5%9C%A8%E6%B3%95%E5%BE%8B%E4%B8%8A%E5%B7%B2%E9%9D%9E%E5%BF%85%E9%A0%88%E4%BD%86%E5%B0%8D%E8%A8%B1%E5%A4%9A%E6%96%B0%E4%BA%BA%E4%BE%86%E8%AA%AA%E9%80%99%E6%98%AF%E4%B8%80%E5%80%8B%E6%B5%AA%E6%BC%AB%E5%8F%88%E5%85%85%E6%BB%BF%E6%84%8F%E7%BE%A9%E7%9A%84%E7%92%B0%E7%AF%80%E8%AE%93%E8%A6%AA%E5%8F%8B%E9%97%9C%E5%90%8C%E8%A6%8B%E8%AD%89%E4%B8%80%E8%BC%A9%E5%AD%90%E7%9A%84%E6%89%BF%E8%AB%BE%E8%AD%89/1249822457190845/",
+        "https://www.ytt.best/procedure1",
+        "https://ubeauty.com.hk/girlstalk/love/20024763/%E8%A5%BF%E5%BC%8F%E8%AD%89%E5%A9%9A%E5%84%80%E5%BC%8Frundown-%E5%BF%85%E6%94%B6%E8%97%8F%E6%B5%81%E7%A8%8B%E8%A1%A8-%E6%BA%96%E5%82%99%E6%B8%85%E5%96%AE-%E9%99%84%E8%AD%89%E5%A9%9A%E5%A0%B4%E5%9C%B0%E6%8E%A8%E8%96%A6",
+        "https://www.weddingfunstudio.com/article/15430"
+      ],
+      "local_pack": [],
+      "questions": [
+        "證婚算儀式嗎？",
+        "證婚儀式是什麼?",
+        "證婚儀式要給多少人情?",
+        "證婚儀式大概多久？"
+      ],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "婚禮策劃",
+      "ai_overview_present": true,
+      "aio_citations": [
+        "https://www.weddingfunstudio.com/article/18544"
+      ],
+      "organic_top10": [
+        "https://www.myseasons.com.hk/post/wedding-user-guideline-menu-proposing-allround-wedding-service-wedding-venues-hongkong-hk-myseasons",
+        "https://hk.indeed.com/%E8%81%B7%E6%B8%AF%E8%B2%BC%E5%A3%AB/%E6%B1%82%E8%81%B7/wedding-planner-%E5%85%A5%E8%A1%8C",
+        "http://www.adawedding.hk/",
+        "https://www.brideandbreakfast.hk/zh-hant/top-hong-kong-wedding-planners/",
+        "https://www.weddingmaster.com.hk/pages/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%B2%BE%E9%81%B8",
+        "https://wevow.esdlife.com/c/%E5%A9%9A%E7%A6%AE%E7%95%B6%E6%97%A5?type=category&cat=%E5%A9%9A%E7%A6%AE%E7%95%B6%E6%97%A5&t=%E5%A9%9A%E7%A6%AE%E7%AD%96%E5%8A%83%E7%B5%B1%E7%B1%8C",
+        "https://www.weddingmaestros.com/zh"
+      ],
+      "local_pack": [],
+      "questions": [
+        "婚禮策劃的流程是什麼?",
+        "婚禮策劃師的薪水是多少?",
+        "一場婚禮大概要多少錢？",
+        "香港的 wedding planner 價格大約多少?"
+      ],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "輕婚禮場地",
+      "ai_overview_present": true,
+      "aio_citations": [
+        "https://wevow.esdlife.com/article/content/%E8%AD%89%E5%A9%9A%E5%A0%B4%E5%9C%B0%E6%8E%A8%E4%BB%8B-%E9%85%92%E6%A8%93-%E9%A4%90%E5%BB%B3-%E7%89%B9%E8%89%B2%E5%A0%B4%E5%9C%B0"
+      ],
+      "organic_top10": [
+        "https://wevow.esdlife.com/content",
+        "https://plantoo.com.hk/small-venue",
+        "https://www.venuehub.hk/blog",
+        "https://event.runhotel.hk/%E6%9C%AA%E5%88%86%E9%A1%9E",
+        "https://lavishflorist.com/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF",
+        "https://www.brideandbreakfast.hk/",
+        "https://www.clubone.com.hk/articles",
+        "https://www.heychoices.com/%E5%9B%8D%E6%84%9B%E5%88%86%E4%BA%AB"
+      ],
+      "local_pack": [],
+      "questions": [],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "香港婚禮策劃公司推薦",
+      "error": true,
+      "ai_overview_present": false,
+      "aio_citations": [],
+      "organic_top10": [],
+      "local_pack": [],
+      "questions": [],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "小型婚禮",
+      "ai_overview_present": true,
+      "aio_citations": [
+        "https://www.hk01.com/%E7%9F%A5%E6%80%A7%E5%A5%B3%E7%94%9F/784897/%E5%B0%8F%E5%9E%8B%E5%A9%9A%E7%A6%AE-20%E5%A4%A7%E5%A9%9A%E5%AE%B4%E5%A0%B4%E5%9C%B0-%E9%A4%90%E5%BB%B3%E6%8E%A8%E8%96%A6-%E7%A9%BA%E4%B8%AD%E8%8A%B1%E5%9C%92%E8%AD%89%E5%A9%9A%E5%A5%97%E9%A4%90%E5%8F%AA%E9%9C%802-5%E8%90%AC%E8%B5%B7",
+        "https://event.runhotel.hk/small-wedding-venue/"
+      ],
+      "organic_top10": [
+        "https://plantoo.com.hk/listing-feature/small-venue",
+        "https://www.hk01.com/%E7%9F%A5%E6%80%A7%E5%A5%B3%E7%94%9F",
+        "https://wedding.esdlife.com/articles/wedding-venues",
+        "https://www.google.com/goto?url=CAESwgUB6zswFRW9CdfGUp12SarjQIJS22LehTktuk2qwuPGkF_z0FO6gfWFfp9lWvxZ4Wh5d9mh8yjS4v7xADcQU9g6mjq9qbXxaXSJnStE_QUuLZhQ0JCz86R6Zxxj5I8VMkztWCzkXEd5pGLD98XBwhptpb9XtqUBZGKOtQ8KRepMkuuAr9A5iqic6xQPetF6VbzF12RyRH9eF9V7qfwS7JKh4Wa-G25vj8Ha3CviDyXE7aDCra0LLbX4LZfsfs2aBWFnILpXPEqrLe4l-O7nSMlETMffEABrOPMpc9B11DMsIDRzTYRVWIULr5L1E6NzP4wt31Qxm2eOJ5jtEvyEoCdK_7VhXicDHOZg_Qn5aZu4refizEz9XblkTZIvThqPebyqFZ5TxBmBOKOvhgJUL-JiN7WByT79cYYO_A5UFRjS1wcG_Y9tNUhJEjsZXBlTDU48jjgTF4qe4fYCMnJBy0jMupsSpPMj6wAT52G7hSASzRw23Uk5-ab6ktp3lK6gHSaHw7yK0mJDQBD5VdyRtgLWV8UCjhIkV83BaXMXc-woNT7gKPhYfE1aVSFacLsSzP5tZ8gD4IJP150-m-ArwuYJKBB55LIMmDwCo8xtuNQ3pTcbUDAGY9VFHbAjAqmQG4a7GksAKIqsCHn7_EJTUvp5qkTTm8ndASEbPtXMTAUoQtJ8Zj13JIZNK-fPSlksU2fvvvq_dhS_G50WbwvUdySJQGjR4sQfnzHoOBKtM5bMnXLGefbVwW9qf9FU79WCUiT2Cj31ZHOVUFbzvc2ZpXfVAEoN3_oMVzkEyC6sjEjka9IueZuM_DZJHYwEpGfLGx242_8Gy20Lexl3sKGrjZcxPVb7lHZK5HPkrV4yraOhW0kuJxMTsO4xXhlq6YgDJSItKbG4qD1NiKZxJepa5bFiZ9IrFDXlQQ21wkhPnoIVMq9v",
+        "https://www.choifookent.com/",
+        "https://www.maxtangphotography.com/post",
+        "https://www.brideandbreakfast.hk/zh-hant",
+        "https://event.runhotel.hk/%E6%9C%AA%E5%88%86%E9%A1%9E"
+      ],
+      "local_pack": [],
+      "questions": [
+        "小型婚禮多少錢？",
+        "小型婚宴自助餐的價格是多少?",
+        "2026年有哪些酒店可以舉辦小型婚宴?",
+        "請問小白鷺婚宴的價格是多少?"
+      ],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "簡約婚禮",
+      "ai_overview_present": true,
+      "aio_citations": [
+        "https://www.venuehub.hk/zh/blog/living-in-hong-kong/e8-bc-95hun-e7-a6-aeshishen-e9-ba-bcyisi-ef-bc-9fxianggang-e8-bc-95hun-e7-a6-ae-e5-a0-b4de-e3-80-81-e9-a0-90suanjiliuchengjie-e7-b4-b9",
+        "https://www.hk01.com/%E7%9F%A5%E6%80%A7%E5%A5%B3%E7%94%9F/1007336/%E8%BC%95%E5%A9%9A%E7%A6%AE%E6%B5%81%E7%A8%8B%E6%B8%85%E5%96%AE-%E5%A0%B4%E5%9C%B0%E9%81%B8%E6%93%87-%E5%A9%9A%E7%A6%AE%E7%B1%8C%E5%82%99%E5%BF%85%E7%9F%A5checklist%E6%BA%96%E5%82%99%E4%BA%8B%E9%A0%85",
+        "https://www.google.com/goto?url=CAESZgHrOzAVX7PytwfwSvTX1GtirzhtnK-yUv3j5_n0mLAJlINbn4iEoxAY_o0Y-N4qVxao-cm9woBqm3fNW0c4JZEQVlROC9tX6yMeNWV3z4IQRMu9R8AxqVGOIbkoVwaHODauTHL3vw"
+      ],
+      "organic_top10": [
+        "https://www.venuehub.hk/blog",
+        "https://www.bespoke-wedding.com/blog",
+        "https://plantoo.com.hk/small-venue",
+        "https://wedding.esdlife.com/articles",
+        "https://www.weddings.tw/",
+        "https://www.google.com/goto?url=CAESwgUB6zswFUmf2nXkFT59haCW3-9RSWHIDFjdRye7EeVRrnahhOA2k8SFhydaGu27-zFFf_ffo8wSL5BJ5-sNBsvcy4kNOijsZedYFU3p6R6ZyXe4BE8mDLYQMPjlqTCWDISfv09YTIMwCXW66vbhVdTttfg_p2GfzdEuuYZJ3FzNmVHIV3HpAMw7KmXV-0xWlsgEx73w1hE6pfe7_O3vRqaY3EaO4Q9ujL4oHyRC9FeDkp7IT5e6HG_MmV5JCMdBgajoSBrbRSneOmiNbMRdZd2RWndDbCM8QR5g4CmjtTBsucK07ZP2AlJS7vU5fcy3XijZrhSpMEbxIcEGzYy56LzH28-A-JPf8YNl8mK7sKNR5bVXbwYT_huz3Kz5egVbPG0sOLRM5mPz0O17HuHLxIb1YMVrXELRHog7waicjwwYMT-bqcxPDqXgwBCm_EjPr-btDavirBrFC83iMF4YACPtymVjyr6bCk8tLJDEt2GkUZKL1ST3_zZbq3uY6efWcNrvFcBn1_wxLVGc58s_OR4NMoCtnXUKHzxZblqiAktYC7kHyzxjmJ3OFestQj30ym4CD7rOlGxfcNBYZBThQopi8E1mXW_WOApRTZ0q95N9zmvilDDK-qs5YtMs0gMJVH59Kv0bUtkAAhxpHNFxkfPCJxJt5SzjDkRu6d_1NWLSxXeJKYXoxyj9FYvMjH91TrqiTY5bynmvKE83Q6Wjpc-wmGKwMgQ15YHhb1pDMsVOhIQhSFLtQRF8C1ZTmC7LWjXKLZo3SD67G8mrg_bzX61W8nITJ8oPNGMKWnG5Ac1XohPjr6fVkx-Msaqe7iUzn6NLrEORc3Pk87IpVRnISY6wQ0l5dn5q0mR8FOpHHxymsYM6ECYHSSvcdWnAC_KEwXLWJxLGCMvCgjlvUk7uyYpIEK3jl3MPdCb4X5G4yw1jkSrY",
+        "https://event.runhotel.hk/%E6%9C%AA%E5%88%86%E9%A1%9E",
+        "https://www.hk01.com/%E7%9F%A5%E6%80%A7%E5%A5%B3%E7%94%9F",
+        "https://pretty.presslogic.com/%E8%BC%95%E5%A9%9A%E7%A6%AE"
+      ],
+      "local_pack": [],
+      "questions": [],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "求婚場地",
+      "ai_overview_present": true,
+      "aio_citations": [
+        "https://www.20balloon.com/post/%E6%B1%82%E5%A9%9A%E5%BF%85%E7%9C%8B-%E9%A6%99%E6%B8%AF%E5%8D%81%E5%A4%A7%E6%B1%82%E5%A9%9A%E5%9C%B0%E9%BB%9E%E6%8E%A8%E4%BB%8B-%E5%A5%B3%E7%94%9F%E6%9C%80%E6%86%A7%E6%86%AC%E7%9A%84%E6%88%B6%E5%A4%96%E5%AE%A4%E5%85%A7%E6%B5%AA%E6%BC%AB%E6%B1%82%E5%A9%9A%E5%8B%9D%E5%9C%B0"
+      ],
+      "organic_top10": [
+        "https://wedding.esdlife.com/articles/wedding-preparation-others/%E4%BD%8E%E8%AA%BF%E6%83%85%E4%BE%B6%E5%BF%85%E9%81%B8-%E8%B6%85%E6%B5%AA%E6%BC%AB%E6%B1%82%E5%A9%9A%E5%A0%B4%E5%9C%B0%E6%8E%A8%E4%BB%8B/",
+        "https://zhuanlan.zhihu.com/p/122346745",
+        "https://www.pro360.com.hk/zh-hk/nearme/proposal_decoration",
+        "https://topbeautyhk.com/article/236312/%E6%B1%82%E5%A9%9A%E4%BD%88%E7%BD%AE-%E9%81%93%E5%85%B7-%E6%B1%82%E5%A9%9A",
+        "https://www.facebook.com/media/set/?vanity&set=a.1735941156430953",
+        "https://www.instagram.com/p/DF9d6cwSpIL/",
+        "https://isleenwed.com/%EF%BD%9C%E6%B1%82%E5%A9%9A%E4%BD%88%E7%BD%AE%EF%BD%9C%E6%89%93%E9%80%A0%E5%AE%8C%E7%BE%8E%E6%B1%82%E5%A9%9A%E4%BD%88%E7%BD%AE%E5%A0%B4%E5%9C%B0/",
+        "https://www.pinterest.com/pin/511580838938850032/",
+        "https://www.sohu.com/a/460970252_509813"
+      ],
+      "local_pack": [],
+      "questions": [],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "婚禮主題",
+      "error": true,
+      "ai_overview_present": false,
+      "aio_citations": [],
+      "organic_top10": [],
+      "local_pack": [],
+      "questions": [],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "婚禮背景板",
+      "error": true,
+      "ai_overview_present": false,
+      "aio_citations": [],
+      "organic_top10": [],
+      "local_pack": [],
+      "questions": [],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "永生花",
+      "ai_overview_present": true,
+      "aio_citations": [
+        "https://www.shimmerflorian.com/blogs/%E5%BE%AE%E5%85%89%E5%B0%8F%E5%AD%B8%E5%A0%82/what-are-preserved-flowers"
+      ],
+      "organic_top10": [
+        "https://www.givegift.com.hk/preserved-flower-%E9%A6%99%E6%B8%AF%E6%B0%B8%E7%94%9F%E8%8A%B1%E4%B8%8D%E6%AD%BB%E8%8A%B1%E6%9D%9F%E6%B0%B8%E7%94%9F%E7%8E%AB%E7%91%B0%E7%B3%BB%E5%88%97/zh-hans",
+        "https://hk.leselle-florist.com/collections/preserved-flowers",
+        "https://www.m31flowershop.com/shop-all%E6%B0%B8%E7%94%9F%E8%8A%B1%E7%94%A2%E5%93%81-m31flowershop",
+        "https://www.brighten.hk/v2/official/SalePageCategory/10059",
+        "https://wemickit.com/category/%E6%B0%B8%E7%94%9F%E8%8A%B1%E7%B3%BB%E5%88%97?lang=zh-hk",
+        "https://www.mandarinflorist.com.tw/blog/posts/how-to-make-your-own-preserved-flower"
+      ],
+      "local_pack": [],
+      "questions": [
+        "永生花是真的花吗？",
+        "什么叫永生花？",
+        "永生花的价格是多少?",
+        "永生花的花语是什么?"
+      ],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    },
+    {
+      "keyword": "保鮮花",
+      "ai_overview_present": true,
+      "aio_citations": [
+        "https://www.givegift.com.hk/blog/post/zh/%E4%BB%80%E9%BA%BC%E6%98%AF%E6%B0%B8%E7%94%9F%E8%8A%B1-%E4%BF%9D%E9%AE%AE%E8%8A%B1%E8%88%87%E9%AE%AE%E8%8A%B1%E5%92%8C%E4%B9%BE%E8%8A%B1%E6%9C%89%E4%BD%95%E5%8D%80%E5%88%A5-%E6%B0%B8%E7%94%9F%E8%8A%B1%E8%AD%B7-%E4%BF%9D%E8%B3%AA-%E5%83%B9%E9%8C%A2~405",
+        "https://www.instagram.com/lachriselle/",
+        "https://www.lachriselle.com/",
+        "https://galentinesflower.com/",
+        "https://www.fasunflower.com/preflower",
+        "https://www.youtube.com/watch?v=mkrcneXNDh0",
+        "https://www.oneflowermacau.com/zh/blogs/flowerinspiration/preservedflowers-caretips"
+      ],
+      "organic_top10": [
+        "https://www.fasunflower.com/preflower?lang=en",
+        "https://flower-forest.com/",
+        "https://www.lachriselle.com/collections/preserved-flowers/mini-bouquet",
+        "https://www.threads.com/@diy2house/post/DXmUO2WDyeP/%E8%8A%B1%E5%A6%9D%E8%96%88-%E4%BF%9D%E9%AE%AE%E8%8A%B1%E5%8F%88%E5%90%8D%E6%B0%B8%E7%94%9F%E8%8A%B1preserved-flower-%E5%AD%98%E6%94%BE%E4%B8%8D%E5%8F%97%E6%BD%AE%E6%BF%95%E4%B8%8D%E6%9A%B4%E6%9B%AC%E7%92%B0%E5%A2%83%E5%8F%AF%E9%81%94%E5%85%A9%E5%B9%B4%E4%BB%A5%E4%B8%8A%E6%9C%AC%E5%BA%97%E4%BF%9D%E9%AE%AE%E8%8A%B1%E8%8A%B1%E6%9D%9F%E6%93%BA%E8%A8%AD%E4%B8%80%E6%AC%BE%E5%8F%AA%E6%9C%89%E4%B8%80%E4%BB%B6%E5%B0%B1%E6%98%AF%E5%94%AF%E4%B8%80%E8%8A%B1%E5%A6%9D%E8%96%88%E4%B8%96%E7%95%8C%E8%8A%B1%E8%97%9D%E8%A8%AD%E8%A8%88%E5%B8%AB%E7%B8%BD%E6%9C%83%E8%AD%89%E6%9B%B8%E4%B8%A6",
+        "https://jpflowerhk.com/%E4%BF%9D%E9%AE%AE%E8%8A%B1152",
+        "https://www.facebook.com/hanakagoworkshop/",
+        "https://orientaldaily.on.cc/cnt/lifestyle/20170301/mobile/odn-20170301-0301_00321_001.html"
+      ],
+      "local_pack": [],
+      "questions": [
+        "請問保鮮花是什麼意思?",
+        "永生花跟鮮花哪個比較貴？",
+        "鮮花要如何保鮮?",
+        "請問「preserved rose」的中文是什麼?"
+      ],
+      "domains": {
+        "3concept.com.hk": {"aio": false, "organic": false, "local_pack": false},
+        "simplygrandproduction.com": {"aio": false, "organic": false, "local_pack": false},
+        "weddinghashtag.hk": {"aio": false, "organic": false, "local_pack": false},
+        "origamiflorist.co": {"aio": false, "organic": false, "local_pack": false}
+      }
+    }
+  ]
+}
