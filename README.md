@@ -8,7 +8,8 @@ Feed in seed keywords — get back an execution-ready content plan: ranked keywo
 
 ```
 seeds ──► expand_keywords ──► keyword_metrics ──► （internal clustering + scoring）
-              ▲ GKP (volume coverage)     ▲ GSC (own rankings)
+              ▲ GKP (volume coverage)     ▲ GSC + Ahrefs organic (own rankings,
+                                          feasibility-first scoring, ADR-019)
                                           │
               keyword_gap (1–3 competitors, GSC excludes own keywords)
                                           ▼
@@ -25,7 +26,7 @@ brand_radar_ai_responses    Perplexity / Copilot / Grok / Google AIO & AI Mode)
 | `keyword_metrics` | Batches ≤100; volume priority GKP > Ahrefs; intent / KD / CPC |
 | `keyword_gap` | 1–3 competitors' organic keywords, minus own ranked keywords (Ahrefs + GSC) and competitor brand terms (incl. `is_branded`) |
 | `build_report` | One-click pipeline → markdown report (incl. GEO prompt section) |
-| `plan_blog_topics` | Day-to-day blog topic research (ADR-014~017): packages 1 primary + 2–4 secondary keywords (vol>0, intent matching `page_type`, optional written/Cantonese register filter), with title suggestion and ≤580px pixel check |
+| `plan_blog_topics` | Day-to-day blog topic research (ADR-014~017): packages 1 primary + 2–4 secondary keywords (vol>0, intent matching `page_type`, optional written/Cantonese register filter), with title suggestion and ≤580px pixel check. Optional `domain` → own-ranking feasibility-first scoring (ADR-019) |
 | `brand_radar_audit` | Client + competitors' citation matrix across AI platforms beyond AIO (Brand Radar direct API, ad-hoc — no report_id needed; `claude` auto-excluded: Ahrefs dataset unsupported); per-platform failures degrade to `errors`, never abort |
 | `brand_radar_ai_responses` | Real user prompts captured on AI platforms (question + platform + est. volume + citation links), ordered by volume — for GEO prompt cross-validation; may contain fuzzy-match noise for zero-visibility brands |
 
@@ -41,14 +42,18 @@ The report output language is Traditional Chinese (spec §6). The template below
 # 內容計劃 — <domain>（<date>）
 
 ## 1. 摘要        → keyword count, cluster count, data sources (Ahrefs/GKP/GSC live or estimated)
-## 2. 關鍵字清單   → keyword / volume / KD / intent / funnel / score (Excel-pasteable)
+## 2. 關鍵字清單   → keyword / volume / KD / intent / funnel / feasibility / 自家排名 / score
+                        (score = 100 × (0.60×feasibility + 0.25×volume + 0.15×intent)；
+                         feasibility = max(KD可行率, 自家排名分 1–3→1.0 / 4–10→0.95 /
+                         11–20→0.85 / 21–30→0.70 / 31–50→0.55，相鄰匹配 ×0.85)——ADR-019
 ## 3. 主題分組     → cluster name, hub suggestion, members, total volume
 ## 4. 內容路線     → hub → spokes order (highest-volume clusters first)
-## 5. GEO prompt 建議 → per cluster: mined questions (funnel + fanout_type labels)
+## 5. GEO prompt 建議 → per cluster: mined questions sorted by score (feasibility-first),
+                        labelled with funnel + fanout_type + score + own position if ranked
                         + 5 template prompts (tagged; branded flagged)
                         + guidance: answer in the first sentence under H3 (40–50 char BLUF),
                           then expand into a 134–167 char self-contained paragraph (AI citation band)
-## 6. 自家排名機會 → (GSC connected only): keywords ranked 11–30 (strike-distance list)
+## 6. 自家排名機會 → (GSC or Ahrefs organic connected): keywords ranked 11–30 (strike-distance list)
 ## 7. 競爭對手差距  → top 20: keyword / volume / KD / which competitors rank
 ## 8. 資料聲明      → one line: live/estimated status per source
 ```

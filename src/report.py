@@ -26,6 +26,9 @@ class ReportKeywordRow:
     intent: str
     funnel: str
     score: float
+    feasibility: float = 0.0
+    own_position: float | None = None
+    match_type: str = "none"
 
 
 @dataclass(frozen=True)
@@ -41,6 +44,9 @@ class ReportQuestion:
     keyword: str
     funnel: str
     fanout_type: str
+    score: float | None = None
+    own_position: float | None = None
+    match_type: str = "none"
 
 
 @dataclass(frozen=True)
@@ -107,6 +113,13 @@ def _fmt_source(live: bool | None) -> str:
     return "live" if live else "估算（未接）"
 
 
+def _fmt_own_position(position: float | None, match_type: str) -> str:
+    if position is None:
+        return "—"
+    tag = "（相鄰）" if match_type == "adjacent" else ""
+    return f"#{position:.0f}{tag}"
+
+
 def render_report(data: ReportData) -> str:
     """ReportData → 八節 markdown（模板逐節對照 README §6）。"""
     lines: list[str] = []
@@ -125,12 +138,14 @@ def render_report(data: ReportData) -> str:
     add("")
     add("## 2. 關鍵字清單")
     add("")
-    add("| keyword | volume | KD | intent | funnel | score |")
-    add("|---|---|---|---|---|---|")
+    add("| keyword | volume | KD | intent | funnel | feasibility | 自家排名 | score |")
+    add("|---|---|---|---|---|---|---|---|")
     for row in data.keywords:
         add(
             f"| {row.keyword} | {_fmt_volume(row.volume)} | "
             f"{_fmt_difficulty(row.difficulty)} | {row.intent} | {row.funnel} | "
+            f"{row.feasibility:.3f} | "
+            f"{_fmt_own_position(row.own_position, row.match_type)} | "
             f"{row.score:.1f} |"
         )
     add("")
@@ -152,14 +167,20 @@ def render_report(data: ReportData) -> str:
     add("")
     add("## 5. GEO prompt 建議")
     add("")
+    add("（問句按 score 降序——可行性主導：自家排名 60% > volume 25% > intent 15%，ADR-019）")
+    add("")
     for geo in data.geo:
         add(f"### {geo.cluster_name}")
         if geo.questions:
             for question in geo.questions:
-                add(
-                    f"- 問句：「{question.keyword}」"
-                    f"（funnel={question.funnel}，fanout={question.fanout_type}）"
-                )
+                extras = [f"funnel={question.funnel}", f"fanout={question.fanout_type}"]
+                if question.score is not None:
+                    extras.append(f"score={question.score:.1f}")
+                if question.own_position is not None:
+                    extras.append(
+                        f"自家排名 {_fmt_own_position(question.own_position, question.match_type)}"
+                    )
+                add(f"- 問句：「{question.keyword}」（{'，'.join(extras)}）")
         else:
             add("- （本組未挖到問句）")
         if geo.prototypes_skipped:
@@ -172,7 +193,9 @@ def render_report(data: ReportData) -> str:
     add("")
     add("## 6. 自家排名機會")
     add("")
-    if data.sources.get("gsc"):
+    if data.sources.get("gsc") or data.sources.get("ahrefs_organic"):
+        add("（排名來源：GSC + Ahrefs organic 合併，同鍵取較佳名次——ADR-019）")
+        add("")
         if data.strike:
             add("| keyword | 自家排名 | volume |")
             add("|---|---|---|")
@@ -181,7 +204,7 @@ def render_report(data: ReportData) -> str:
         else:
             add("（近 90 天無排名 11–30 的詞）")
     else:
-        add("GSC 未接，本節略（規格 §6：自家排名機會僅 GSC 已接時輸出）。")
+        add("GSC 與 Ahrefs organic 均未接，本節略（自家排名機會需至少一個排名來源）。")
     add("")
     add("## 7. 競爭對手差距")
     add("")
@@ -241,7 +264,7 @@ def build_report(
         from server import _build_clients
 
         clients = _build_clients(today)
-    ahrefs, gsc, gkp = clients
+    ahrefs, _, gkp = clients
     resolved_today = today or _date.today().isoformat()
     competitor_list = [c for c in (c.strip() for c in competitors or []) if c]
 
@@ -300,8 +323,10 @@ def build_report(
             "parent_topic": metric.parent_topic if metric else None,
         }
 
-    positions = gsc.top_queries(domain=domain) if gsc else None
-    gsc_live = positions is not None
+    from server import _own_positions
+
+    positions, ahrefs_organic_live, gsc_live = _own_positions(domain, country, clients)
+    ahrefs_live = ahrefs_live or ahrefs_organic_live
 
     scored = score_keywords(
         [
@@ -313,8 +338,9 @@ def build_report(
             )
             for key, info in details.items()
         ],
-        own_positions=positions,
+        own_positions=positions or None,
     )
+    scored_by_key = {normalize_keyword(row.keyword): row for row in scored}
 
     clusters = cluster_keywords(
         [
@@ -330,17 +356,31 @@ def build_report(
     geo_clusters = []
     for cluster in clusters:
         small_cluster = cluster.total_volume < MIN_PROTOTYPE_CLUSTER_VOLUME
+        cluster_questions = sorted(
+            (
+                scored_by_key.get(normalize_keyword(member.keyword))
+                for member in cluster.members
+                if is_question(member.keyword)
+            ),
+            key=lambda row: (
+                -(row.score if row else 0.0),
+                normalize_keyword(row.keyword) if row else "",
+            ),
+        )
         geo_clusters.append(
             ReportGeoCluster(
                 cluster_name=cluster.name,
                 questions=tuple(
                     ReportQuestion(
-                        keyword=member.keyword,
-                        funnel=classify_funnel(member.keyword),
-                        fanout_type=classify_fanout(member.keyword),
+                        keyword=row.keyword,
+                        funnel=classify_funnel(row.keyword),
+                        fanout_type=classify_fanout(row.keyword),
+                        score=row.score,
+                        own_position=row.own_position,
+                        match_type=row.match_type,
                     )
-                    for member in cluster.members
-                    if is_question(member.keyword)
+                    for row in cluster_questions
+                    if row is not None
                 ),
                 prototypes=(
                     ()
@@ -394,6 +434,9 @@ def build_report(
                 difficulty=row.difficulty,
                 intent=row.intent,
                 funnel=classify_funnel(row.keyword),
+                feasibility=row.components.feasibility,
+                own_position=row.own_position,
+                match_type=row.match_type,
                 score=row.score,
             )
             for row in scored
@@ -410,7 +453,12 @@ def build_report(
         geo=tuple(geo_clusters),
         strike=tuple(strike_rows),
         gap=gap_rows,
-        sources={"ahrefs": ahrefs_live, "gkp": gkp_live, "gsc": gsc_live},
+        sources={
+            "ahrefs": ahrefs_live,
+            "gkp": gkp_live,
+            "gsc": gsc_live,
+            "ahrefs_organic": ahrefs_organic_live,
+        },
     )
     markdown = render_report(data)
     if output_path is not None:

@@ -22,6 +22,7 @@
 | ADR-016 | 語域分類器：口語（廣東話標記 邊度/邊間/點樣/唔/嘅/咩/咁/冇/咗/嚟…）／書面語（如何/什麼/收費/價格/比較…）／中性；口語優先；「係」不入表（關係/體係誤中），改用係咩/係咪 | 日常需求 #4：HK 內容需配合書面語或口語語域 | 2026-10-07 |
 | ADR-017 | blog topic 打包：score 降序貪婪——primary + 同簽章/同 parent_topic 的 2–4 個 secondary；硬性過濾 volume>0（#3）與 intent 匹配（#1）；secondary <2 標 needs_more_keywords；GEO prompts 不受限（#7，規格 §5 無量照列原則不變） | 日常需求 #5/#6；打包獨立於 build_report 八節模板（新 tool `plan_blog_topics`，不改 §6 驗收標準） | 2026-10-07 |
 | ADR-018 | 開發工具鏈：`pip install -e ".[dev]"`（setuptools + console script `geo-keyword-planner`）、零依賴 `.env` 載入（config.load_dotenv，已存在 env 不覆蓋）、ruff 為 lint 閘門（BLE001/DTZ011 為 ADR-004/009 刻意豁免；RUF001-003 中文全形標點豁免）、GKP_MCP_DEBUG=1 時子進程 stderr 直通 | 債務清理 2026-10-07：打包/runbook/lint 補齊 | 2026-10-07 |
+| ADR-019 | 評分改為**客戶排名可行性主導**：score = 100 × (0.60×feasibility + 0.25×volume + 0.15×intent)；feasibility = max(KD可行率, 自家排名分)——自家排名帶 1–3→1.00／4–10→0.95／11–20→0.85／21–30→0.70／31–50→0.55，相鄰匹配（互為子字串 ≥2 字）×0.85 折扣；自家排名來源 = Ahrefs organic(best_position) + GSC top_queries 合併取較佳名次；舊 strike +15 移除（內化進自家排名分，避免雙重計數）；§2 表格加 feasibility／自家排名兩欄，§5 問句按 score 降序並附 score／自家排名標註；`plan_blog_topics` 加可選 `domain` 參數啟用自家排名 | Amway dogfood（2026-10-13）證明舊公式 volume 主導會推高量低可行詞（3,400 量但客戶零排名基礎），而客戶已在相鄰詞 Top10 的詞（魚油 #7、輔酶q10 #2）才是最快能 rank 的 prompt；自家排名是可行性最強實證訊號，無排名時才回落 KD 啟發式 | 2026-10-13 |
 
 ## 已驗證 API 坑（上線前真 key 打一次逐條複核）
 

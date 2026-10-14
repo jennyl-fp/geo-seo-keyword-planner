@@ -107,10 +107,19 @@ class TestFullPipeline:
     def test_scores_and_order(self):
         markdown = run_full()
         rows = markdown.splitlines()
-        assert "| 智能辦公室幾錢 | 30 | 8 | transactional | bofu | 38.6 |" in rows
-        assert "| smart office solution | 720 | 30 | informational | tofu | 47.3 |" in rows
-        assert "| smart office | 3300 | 35 | informational | tofu | 36.4 |" in rows
-        assert "| what is smart office | 90 | 12 | informational | tofu | 28.9 |" in rows
+        assert "| 智能辦公室幾錢 | 30 | 8 | transactional | bofu | 0.910 | — | 80.2 |" in rows
+        assert (
+            "| smart office solution | 720 | 30 | informational | tofu | "
+            "0.850 | #14 | 80.3 |" in rows
+        )
+        assert (
+            "| smart office | 3300 | 35 | informational | tofu | 0.950 | #9 | 91.0 |"
+            in rows
+        )
+        assert (
+            "| what is smart office | 90 | 12 | informational | tofu | "
+            "0.865 | #9（相鄰） | 74.8 |" in rows
+        )
         section2 = markdown.split("## 2. 關鍵字清單")[1].split("## 3.")[0]
         ordered = [ln for ln in section2.splitlines() if ln.startswith("| ")]
         scores = [ln.rsplit("|", 2)[-2] for ln in ordered[2:]]
@@ -123,8 +132,14 @@ class TestFullPipeline:
 
     def test_geo_questions_with_labels(self):
         markdown = run_full()
-        assert "「what is smart office」（funnel=tofu，fanout=semantic）" in markdown
-        assert "「智能辦公室幾錢」（funnel=bofu，fanout=attribute）" in markdown
+        assert (
+            "「what is smart office」（funnel=tofu，fanout=semantic，"
+            "score=74.8，自家排名 #9（相鄰））" in markdown
+        )
+        assert (
+            "「智能辦公室幾錢」（funnel=bofu，fanout=attribute，score=80.2）"
+            in markdown
+        )
 
     def test_prototypes_five(self):
         markdown = run_full()
@@ -163,8 +178,11 @@ class TestDegradedPipeline:
         assert "Ahrefs=估算（未接）" in markdown
         assert "GKP=估算（未接）" in markdown
         assert "GSC=估算（未接）" in markdown
-        assert "| smart office | 無量測數據 | — | informational | tofu | 0.0 |" in markdown
-        assert "GSC 未接，本節略" in markdown
+        assert (
+            "| smart office | 無量測數據 | — | informational | tofu | "
+            "0.500 | — | 39.0 |" in markdown
+        )
+        assert "GSC 與 Ahrefs organic 均未接，本節略" in markdown
         assert "（無差距資料" in markdown
         assert "主題分組：1 組" in markdown
 

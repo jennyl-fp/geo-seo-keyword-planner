@@ -59,6 +59,31 @@ def main() -> None:
     mcp.run()
 
 
+def _own_positions(
+    domain: str, country: str, clients: Clients
+) -> tuple[dict[str, float], bool, bool]:
+    """自家排名合併（ADR-019）：Ahrefs organic(best_position) + GSC top_queries，
+    同鍵取較佳名次。回 (positions, ahrefs_live, gsc_live)；來源失敗各自降級。"""
+    ahrefs, gsc, _ = clients
+    positions: dict[str, float] = {}
+    own = ahrefs.organic_keywords(domain, country=country, limit=1000)
+    ahrefs_live = own is not None
+    for row in own or []:
+        if row.best_position is None:
+            continue
+        key = normalize_keyword(row.keyword)
+        if not key:
+            continue
+        if key not in positions or row.best_position < positions[key]:
+            positions[key] = float(row.best_position)
+    gsc_positions = gsc.top_queries(domain=domain) if gsc else None
+    gsc_live = gsc_positions is not None
+    for key, position in (gsc_positions or {}).items():
+        if key not in positions or position < positions[key]:
+            positions[key] = position
+    return positions, ahrefs_live, gsc_live
+
+
 def _merge_expansion(
     expansion_lists: list[list[tuple[str, int | None]] | None],
 ) -> dict[str, tuple[str, int | None]]:
@@ -240,10 +265,12 @@ def plan_blog_topics_impl(
     country: str,
     limit: int,
     clients: Clients,
+    domain: str | None = None,
 ) -> dict[str, Any]:
     """日常 blog topic research（需求 #1–#7）：expand+metrics →
     vol>0／intent（page_type）／register 過濾 → 1 primary + 2–4 secondary
-    打包 → 每包附 title 建議 + ≤580px 檢查。"""
+    打包 → 每包附 title 建議 + ≤580px 檢查。
+    domain 有值時拉自家排名（ADR-019：可行性主導評分）。"""
     expansion = expand_keywords_impl(seeds, country, clients)
     keywords = [row["keyword"] for row in expansion["keywords"]]
     metrics = keyword_metrics_impl(keywords, country, clients)
@@ -265,11 +292,18 @@ def plan_blog_topics_impl(
         )
         for row in metrics["keywords"]
     ]
+    own_positions: dict[str, float] | None = None
+    own_live = {"ahrefs_organic": False, "gsc": False}
+    if domain:
+        own_positions, own_live["ahrefs_organic"], own_live["gsc"] = _own_positions(
+            domain, country, clients
+        )
     scored = score_keywords(
         [
             KeywordForScoring(kw.keyword, kw.volume, kw.difficulty, kw.intent)
             for kw in topic_keywords
-        ]
+        ],
+        own_positions=own_positions,
     )
     score_by_key = {
         normalize_keyword(row.keyword): row.score for row in scored
@@ -321,6 +355,7 @@ def plan_blog_topics_impl(
         "sources": {
             "ahrefs": expansion["sources"]["ahrefs"] or metrics["sources"]["ahrefs"],
             "gkp": expansion["sources"]["gkp"] or metrics["sources"]["gkp"],
+            **({"own_positions": own_live} if domain else {}),
         },
     }
 
@@ -465,11 +500,14 @@ def plan_blog_topics(
     brand: str | None = None,
     country: str = "hk",
     limit: int = 20,
+    domain: str | None = None,
 ) -> dict:
     """Blog topic 打包：1 primary + 2–4 secondary（vol>0、intent 符合
-    page_type、register 可選），附 title 建議與 ≤580px 像素檢查。"""
+    page_type、register 可選），附 title 建議與 ≤580px 像素檢查。
+    domain 提供時以客戶排名可行性為主要評分因素（ADR-019）。"""
     return plan_blog_topics_impl(
-        seeds, page_type, register, brand, country, limit, _build_clients()
+        seeds, page_type, register, brand, country, limit, _build_clients(),
+        domain=domain,
     )
 
 

@@ -79,12 +79,21 @@ class TestStructure:
 class TestSectionTwo:
     def test_table_header_and_rows(self):
         markdown = render_report(make_data())
-        assert "| keyword | volume | KD | intent | funnel | score |" in markdown
-        assert "| smart office | 1200 | 35 | informational | tofu | 32.7 |" in markdown
+        assert (
+            "| keyword | volume | KD | intent | funnel | feasibility | 自家排名 | score |"
+            in markdown
+        )
+        assert (
+            "| smart office | 1200 | 35 | informational | tofu | 0.000 | — | 32.7 |"
+            in markdown
+        )
 
     def test_no_volume_label(self):
         markdown = render_report(make_data())
-        assert "| what is smart office | 無量測數據 | 22 | informational | tofu | 0.0 |" in markdown
+        assert (
+            "| what is smart office | 無量測數據 | 22 | informational | tofu | "
+            "0.000 | — | 0.0 |" in markdown
+        )
 
 
 class TestSectionsThreeFour:
@@ -155,7 +164,7 @@ class TestSectionSix:
             sources={"ahrefs": True, "gkp": True, "gsc": False},
         )
         markdown = render_report(data)
-        assert "GSC 未接，本節略" in markdown
+        assert "GSC 與 Ahrefs organic 均未接，本節略" in markdown
         assert "keyword | 自家排名" not in markdown
 
     def test_gsc_on_no_strike(self):
